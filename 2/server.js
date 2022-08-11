@@ -44,5 +44,5 @@ app.post("/store-goal", (req, res) => {
 });
 
 app.listen(80, () => {
-  console.log("server is listening at 80");
+  console.log("server is listening");
 });
