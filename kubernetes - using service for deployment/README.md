@@ -9,6 +9,8 @@ $ kubectl get services -n lab06
 
 (curl-pod) $ curl http://172.16.255.87:8000
 ```
+![image](https://user-images.githubusercontent.com/83508073/204735844-76e2d986-6cc4-40f2-82ed-78d09a672534.png)
+
 
 ### NodePort Service - 외부 접근 가능
 클러스터 외부에서도 접속이 가능하다. 
@@ -18,3 +20,4 @@ $ kubectl apply -f service-nodeport.yaml
 
 $ curl http://43.133.86.74:30123
 ```
+![image](https://user-images.githubusercontent.com/83508073/204735716-845ebfb6-aec7-46ee-86a7-e6392f19b1cb.png)
