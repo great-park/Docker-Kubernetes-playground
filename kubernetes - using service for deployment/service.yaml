@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx-service
+  namespace: lab06
+spec:
+  selector:
+    app: nginx-front
+  type: ClusterIP
+  ports:
+    - port: 8000
+      targetPort: 80
