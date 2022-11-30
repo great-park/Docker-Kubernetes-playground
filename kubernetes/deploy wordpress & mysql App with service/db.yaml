@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-deployment
+  namespace: assignment2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-front
+  template:
+    metadata:
+      name: db
+      labels:
+        app: db-front
+    spec:
+      containers:
+        - name: db
+          image: mysql:5.7
+          env:
+          - name: MYSQL_USER
+            value: wordpress
+          - name: MYSQL_DATABASE
+            value: wordpress
+          - name: MYSQL_ROOT_PASSWORD
+            value: somewordpress
+          - name: MYSQL_PASSWORD
+            value: wordpress
+          ports:
+            - containerPort: 3306
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: db-service
+  namespace: assignment2
+spec:
+  selector:
+    app: db-front
+  type: ClusterIP
+  ports:
+  - port: 8000
+    targetPort: 3306
