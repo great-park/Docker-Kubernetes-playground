@@ -19,7 +19,7 @@ spec:
           image: wordpress:latest
           env:
           - name: WORDPRESS_DB_HOST
-            value: db
+            value: db-deployment
           - name: WORDPRESS_DB_USER
             value: wordpress
           - name: WORDPRESS_DB_PASSWORD
