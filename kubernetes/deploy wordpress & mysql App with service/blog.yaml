@@ -1,33 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: blog-deployment
+  name: blog-deploy
   namespace: assignment2
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: blog-front
+      app: blog
   template:
     metadata:
-      name: blog
       labels:
-        app: blog-front
+        app: blog
     spec:
       containers:
-        - name: blog
-          image: wordpress:latest
-          env:
-          - name: WORDPRESS_DB_HOST
-            value: db-deployment
-          - name: WORDPRESS_DB_USER
-            value: wordpress
-          - name: WORDPRESS_DB_PASSWORD
-            value: wordpress
-          - name: WORDPRESS_DB_NAME
-            value: wordpress
-          ports:
-            - containerPort: 80
+      - name: wp
+        image: wordpress:latest
+        env:
+        - name: WORDPRESS_DB_HOST
+          value: 172.16.255.89:10000
+        - name: WORDPRESS_DB_USER
+          value: wordpress
+        - name: WORDPRESS_DB_PASSWORD
+          value: wordpress
+        - name: WORDPRESS_DB_NAME
+          value: wordpress
+        ports:
+        - containerPort: 80
+
 ---
 
 kind: Service
@@ -36,10 +36,10 @@ metadata:
   name: blog-service
   namespace: assignment2
 spec:
-  selector:
-    app: blog-front
   type: NodePort
+  selector:
+    app: blog
   ports:
-  - port: 80
+  - nodePort: 30003
+    port: 80
     targetPort: 80
-    nodePort: 30122
